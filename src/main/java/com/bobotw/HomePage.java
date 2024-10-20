@@ -31,6 +31,6 @@ public class HomePage {
                     h1("Best of Best of the Worst")
                 )
             )
-        ).render();
+        ).withData("theme", "dark").render();
     }
 }
