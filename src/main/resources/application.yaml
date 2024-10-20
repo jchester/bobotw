@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  host: 0.0.0.0
+
+app:
+    greeting: "Hello"
+
+db:
+  source: jdbc
+  connection:
+    url: "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE"
+    username: sa
+    password:
+    initializationFailTimeout: -1
+    connectionTimeout: 2000
+

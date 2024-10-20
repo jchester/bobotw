@@ -1,0 +1,4 @@
+db:
+  connection:
+    url: jdbc:h2:mem:test
+
