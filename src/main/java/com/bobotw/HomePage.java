@@ -1,14 +1,22 @@
 package com.bobotw;
 
+import j2html.tags.DomContent;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.List;
+
 import static j2html.TagCreator.*;
 
 @Path("/")
 public class HomePage {
+    @PersistenceContext(name = "persistence1")
+    private EntityManager entityManager;
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String homepage() {
@@ -33,10 +41,19 @@ public class HomePage {
                     h1("Best of Best of the Worst"),
                     div(
                         h2("The current Best of the Best is"),
-                        p("None of the Above by nunya bizness")
-                    ).withId("best-of-best")
+                        p("None of the Above by Nunya Bizness")
+                    ).withId("best-of-best"),
+                    ol(
+                        episodes()
+                    )
                 )
             )
         ).withData("theme", "dark").render();
+    }
+
+    private DomContent episodes() {
+        List<Episode> episodes = entityManager.createNamedQuery("getEpisodes", Episode.class).getResultList();
+
+        return each(episodes, episode -> li(": " + episode.getTitle()));
     }
 }
