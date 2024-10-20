@@ -20,15 +20,21 @@ public class HomePage {
                 title("Best of Best of the Worst")
             ),
             body(
-                nav(
-                    ul(
-                        li(a().withText("Vote").withHref("/vote")),
-                        li(a().withText("Leaderboard").withHref("/leaderboard")),
-                        li(a().withText("About").withHref("/about"))
+                header(
+                    nav(
+                        ul(
+                            li(a().withText("Vote").withHref("/vote")),
+                            li(a().withText("Leaderboard").withHref("/leaderboard")),
+                            li(a().withText("About").withHref("/about"))
+                        )
                     )
                 ),
                 main(
-                    h1("Best of Best of the Worst")
+                    h1("Best of Best of the Worst"),
+                    div(
+                        h2("The current Best of the Best is"),
+                        p("None of the Above by nunya bizness")
+                    ).withId("best-of-best")
                 )
             )
         ).withData("theme", "dark").render();
