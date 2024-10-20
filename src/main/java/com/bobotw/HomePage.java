@@ -16,11 +16,20 @@ public class HomePage {
             head(
                 meta().withCharset("utf-8"),
                 meta().withName("viewport").withContent("width=device-width, initial-scale=1.0"),
-                link().withRel("stylesheet").withHref("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"),
+                link().withRel("stylesheet").withHref("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"),
                 title("Best of Best of the Worst")
             ),
             body(
-                h1("Best of Best of the Worst")
+                nav(
+                    ul(
+                        li(a().withText("Vote").withHref("/vote")),
+                        li(a().withText("Leaderboard").withHref("/leaderboard")),
+                        li(a().withText("About").withHref("/about"))
+                    )
+                ),
+                main(
+                    h1("Best of Best of the Worst")
+                )
             )
         ).render();
     }

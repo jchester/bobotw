@@ -2,6 +2,8 @@ package com.bobotw;
 
 import io.helidon.microprofile.testing.junit5.HelidonTest;
 import org.htmlunit.WebClient;
+import org.htmlunit.html.DomElement;
+import org.htmlunit.html.HtmlAnchor;
 import org.htmlunit.html.HtmlMeta;
 import org.htmlunit.html.HtmlPage;
 import org.junit.jupiter.api.Test;
@@ -11,8 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 @HelidonTest
 public class HomePageTest {
@@ -41,7 +42,22 @@ public class HomePageTest {
     }
 
     @Test
-    void setsPicoStylesheet() {
-        assertThat(page.getStyleSheets().getFirst().getUri(), containsString("pico.min.css"));
+    void setsPicoClasslessCssStylesheet() {
+        assertThat(page.getStyleSheets().getFirst().getUri(), containsString("pico.classless.min.css"));
+    }
+
+    @Test
+    void providesNavLinks() {
+        final DomElement nav = page.getElementsByTagName("nav").getFirst();
+        assertThat(nav, notNullValue());
+
+        HtmlAnchor voteLink = page.getAnchorByText("Vote");
+        assertThat(voteLink.getHrefAttribute(), is("/vote"));
+
+        HtmlAnchor leaderboardLink = page.getAnchorByText("Leaderboard");
+        assertThat(leaderboardLink.getHrefAttribute(), is("/leaderboard"));
+
+        HtmlAnchor aboutLink = page.getAnchorByText("About");
+        assertThat(aboutLink.getHrefAttribute(), is("/about"));
     }
 }
