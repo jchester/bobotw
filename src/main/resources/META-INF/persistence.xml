@@ -7,10 +7,20 @@
     <persistence-unit name="persistence1" transaction-type="JTA">
         <jta-data-source>persistence1</jta-data-source>
         <class>com.bobotw.Episode</class>
+        <class>com.bobotw.Video</class>
         <properties>
             <property name="hibernate.column_ordering_strategy" value="legacy"/>
-            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/init_script.sql"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            <property name="jakarta.persistence.schema-generation.create-source" value="script"/>
+            <property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/schema.sql"/>
+
+            <!-- Optional: Load data from data.sql -->
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/data.sql"/>
+
+            <property name="hibernate.hbm2ddl.import_files_sql_extractor"
+                      value="org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor"/>
+
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>

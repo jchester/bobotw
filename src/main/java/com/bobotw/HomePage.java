@@ -44,11 +44,17 @@ public class HomePage {
                         p("None of the Above by Nunya Bizness")
                     ).withId("best-of-best"),
                     ol(
-                        episodes()
+                        videos()
                     )
                 )
             )
         ).withData("theme", "dark").render();
+    }
+
+    private DomContent videos() {
+        List<Video> videos = entityManager.createNamedQuery("getVideos", Video.class).getResultList();
+
+        return each(videos, video -> li("Title: " + video.getTitle()));
     }
 
     private DomContent episodes() {
