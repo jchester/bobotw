@@ -10,6 +10,7 @@
         <class>com.bobotw.Video</class>
         <class>com.bobotw.Ranker</class>
         <class>com.bobotw.PairRanking</class>
+        <class>com.bobotw.WinRatio</class>
         <properties>
             <property name="hibernate.column_ordering_strategy" value="legacy"/>
 

@@ -15,6 +15,10 @@ public class Video {
     @ManyToOne
     private Episode episode;
 
+    @OneToOne
+    @Transient
+    private WinRatio winRatio;
+
     public Long getId() {
         return id;
     }
@@ -37,5 +41,13 @@ public class Video {
 
     public void setEpisode(Episode episode) {
         this.episode = episode;
+    }
+
+    public WinRatio getWinRatio() {
+        return winRatio;
+    }
+
+    public void setWinRatio(WinRatio winRatio) {
+        this.winRatio = winRatio;
     }
 }

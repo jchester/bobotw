@@ -28,9 +28,27 @@ create table pair_rankings
     loser_id  integer not null references videos (id),
     ranker_id uuid    not null references rankers (id),
 
-    unique (ranker_id, winner_id, loser_id)
+    unique (ranker_id, winner_id, loser_id),
+    check (winner_id <> loser_id)
 );
 
 create index rank_winners on pair_rankings (winner_id);
 create index rank_losers on pair_rankings (loser_id);
 create index rank_rankers on pair_rankings (ranker_id);
+
+create view win_ratios as
+with wins as (select winner_id        as video_id,
+                     count(winner_id) as wins
+              from pair_rankings
+              group by winner_id),
+     losses as (select loser_id        as video_id
+                     , count(loser_id) as losses
+                from pair_rankings
+                group by loser_id)
+select wins.video_id
+     , wins.wins
+     , losses.losses
+     , wins.wins / losses.losses as ratio
+from wins
+         join losses on wins.video_id = losses.video_id
+;
