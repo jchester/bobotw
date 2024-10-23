@@ -8,6 +8,8 @@
         <jta-data-source>persistence1</jta-data-source>
         <class>com.bobotw.Episode</class>
         <class>com.bobotw.Video</class>
+        <class>com.bobotw.Ranker</class>
+        <class>com.bobotw.PairRanking</class>
         <properties>
             <property name="hibernate.column_ordering_strategy" value="legacy"/>
 
