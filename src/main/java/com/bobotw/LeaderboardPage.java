@@ -20,39 +20,24 @@ public class LeaderboardPage {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String leaderboard() {
-        return html(
-            head(
-                meta().withCharset("utf-8"),
-                meta().withName("viewport").withContent("width=device-width, initial-scale=1.0"),
-                link().withRel("stylesheet").withHref("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"),
-                title("BOBOTW Leaderboard")
-            ),
-            body(
-                header(
-                    nav(
-                        ul(
-                            li(a().withText("Home").withHref("/")),
-                            li(a().withText("Vote").withHref("/vote")),
-                            li(a().withText("Leaderboard").withHref("/leaderboard")),
-                            li(a().withText("About").withHref("/about"))
+        PageFragment fragment = new PageFragment(
+            "BOBOTW Leaderboard",
+            main(
+                table(
+                    thead(
+                        tr(
+                            th("Title"),
+                            th("Win Ratio")
                         )
-                    )
-                ),
-                main(
-                    table(
-                        thead(
-                            tr(
-                                th("Title"),
-                                th("Win Ratio")
-                            )
-                        ),
-                        tbody(
-                            videos()
-                        )
+                    ),
+                    tbody(
+                        videos()
                     )
                 )
             )
-        ).withData("theme", "dark").render();
+        );
+
+        return fragment.getFragment().render();
     }
 
     private DomContent videos() {
