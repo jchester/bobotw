@@ -32,7 +32,7 @@ public class PageFragmentTest {
         assertThat(rendered, containsString("</nav>"));
 
         assertThat(rendered, containsString("<li><a href=\"/\">Home</a></li>"));
-        assertThat(rendered, containsString("<li><a href=\"/vote\">Vote</a></li>"));
+        assertThat(rendered, containsString("<li><a href=\"/rank\">Rank</a></li>"));
         assertThat(rendered, containsString("<li><a href=\"/leaderboard\">Leaderboard</a></li>"));
         assertThat(rendered, containsString("<li><a href=\"/about\">About</a></li>"));
     }
