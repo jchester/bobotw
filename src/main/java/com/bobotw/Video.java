@@ -12,7 +12,7 @@ public class Video {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Episode episode;
 
     public Long getId() {
