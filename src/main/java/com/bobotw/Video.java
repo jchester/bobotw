@@ -15,39 +15,27 @@ public class Video {
     @ManyToOne
     private Episode episode;
 
-    @OneToOne
-    @Transient
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id", referencedColumnName = "video_id")
     private WinRatio winRatio;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Episode getEpisode() {
         return episode;
     }
 
-    public void setEpisode(Episode episode) {
-        this.episode = episode;
-    }
-
-    public WinRatio getWinRatio() {
-        return winRatio;
-    }
-
-    public void setWinRatio(WinRatio winRatio) {
-        this.winRatio = winRatio;
+    public double getWinRatio() {
+        if (winRatio == null) {
+            return 0.0;
+        } else {
+            return winRatio.getRatio();
+        }
     }
 }

@@ -11,8 +11,7 @@ insert into videos(id, title, episode_id) values (4, 'Keepsake', 4);
 
 insert into rankers(id) values ('C5C8C703-5730-4511-BA55-224DD955E20D');
 
-insert into pair_rankings(id, winner_id, loser_id, ranker_id) values (1, 1, 2, 'C5C8C703-5730-4511-BA55-224DD955E20D');
-insert into pair_rankings(id, winner_id, loser_id, ranker_id) values (1, 1, 3, 'C5C8C703-5730-4511-BA55-224DD955E20D');
-insert into pair_rankings(id, winner_id, loser_id, ranker_id) values (1, 1, 4, 'C5C8C703-5730-4511-BA55-224DD955E20D');
-insert into pair_rankings(id, winner_id, loser_id, ranker_id) values (1, 2, 4, 'C5C8C703-5730-4511-BA55-224DD955E20D');
-insert into pair_rankings(id, winner_id, loser_id, ranker_id) values (1, 2, 3, 'C5C8C703-5730-4511-BA55-224DD955E20D');
+insert into pair_rankings(winner_id, loser_id, ranker_id) values (1, 3, 'C5C8C703-5730-4511-BA55-224DD955E20D');
+insert into pair_rankings(winner_id, loser_id, ranker_id) values (1, 4, 'C5C8C703-5730-4511-BA55-224DD955E20D');
+insert into pair_rankings(winner_id, loser_id, ranker_id) values (3, 2, 'C5C8C703-5730-4511-BA55-224DD955E20D');
+

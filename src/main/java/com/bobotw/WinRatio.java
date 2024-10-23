@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "win_ratios")
 public class WinRatio {
     @Id
+    @Column(name = "video_id")
     private Long videoId;
 
     @Column(name = "ratio")
@@ -18,15 +19,7 @@ public class WinRatio {
         return videoId;
     }
 
-    public void setVideoId(Long videoId) {
-        this.videoId = videoId;
-    }
-
     public Double getRatio() {
         return ratio;
-    }
-
-    public void setRatio(Double ratio) {
-        this.ratio = ratio;
     }
 }

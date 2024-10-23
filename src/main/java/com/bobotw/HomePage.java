@@ -54,7 +54,7 @@ public class HomePage {
     private DomContent videos() {
         List<Video> videos = entityManager.createNamedQuery("getVideos", Video.class).getResultList();
 
-        return each(videos, video -> li("Title: " + video.getTitle()));
+        return each(videos, video -> li("Title: " + video.getTitle() + "  -- win ratio: " + video.getWinRatio()));
     }
 
     private DomContent episodes() {

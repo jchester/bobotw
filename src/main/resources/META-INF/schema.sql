@@ -37,18 +37,26 @@ create index rank_losers on pair_rankings (loser_id);
 create index rank_rankers on pair_rankings (ranker_id);
 
 create view win_ratios as
-with wins as (select winner_id        as video_id,
-                     count(winner_id) as wins
+with wins as (select winner_id as video_id,
+                     count(1)  as wins
               from pair_rankings
               group by winner_id),
-     losses as (select loser_id        as video_id
-                     , count(loser_id) as losses
+     losses as (select loser_id as video_id
+                     , count(1) as losses
                 from pair_rankings
                 group by loser_id)
-select wins.video_id
-     , wins.wins
-     , losses.losses
-     , wins.wins / losses.losses as ratio
-from wins
-         join losses on wins.video_id = losses.video_id
+select videos.id                  as video_id
+     , coalesce(wins.wins, 0)     as wins
+     , coalesce(losses.losses, 0) as losses
+     , case
+           when wins.wins is not null and losses.losses is not null
+               then cast(wins.wins as double) / (wins.wins + losses.losses)
+           when wins.wins is not null and losses.losses is null then 1.0
+           when wins.wins is null and losses.losses is not null then 0.0
+           when wins.wins is null and losses.losses is null then 0.0
+    end                           as ratio
+from videos
+         left outer join wins on videos.id = wins.video_id
+         left outer join losses on videos.id = losses.video_id
+order by ratio desc
 ;
