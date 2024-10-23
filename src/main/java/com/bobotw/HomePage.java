@@ -41,7 +41,7 @@ public class HomePage {
                     h1("Best of Best of the Worst"),
                     div(
                         h2("The current Best of the Best is"),
-                        p("None of the Above by Nunya Bizness")
+                        bestVideo()
                     ).withId("best-of-best"),
                     ol(
                         videos()
@@ -49,6 +49,11 @@ public class HomePage {
                 )
             )
         ).withData("theme", "dark").render();
+    }
+
+    private DomContent bestVideo() {
+        Video video = entityManager.createQuery("select v from Video v order by winRatio limit 1", Video.class).getSingleResult();
+        return div().withText("Title: " + video.getTitle());
     }
 
     private DomContent videos() {
