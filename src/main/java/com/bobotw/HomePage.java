@@ -31,6 +31,7 @@ public class HomePage {
                 header(
                     nav(
                         ul(
+                            li(a().withText("Home").withHref("/")),
                             li(a().withText("Vote").withHref("/vote")),
                             li(a().withText("Leaderboard").withHref("/leaderboard")),
                             li(a().withText("About").withHref("/about"))

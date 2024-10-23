@@ -51,6 +51,9 @@ public class HomePageTest {
         final DomElement nav = page.getElementsByTagName("nav").getFirst();
         assertThat(nav, notNullValue());
 
+        HtmlAnchor homeLink = page.getAnchorByText("Home");
+        assertThat(homeLink.getHrefAttribute(), is("/"));
+
         HtmlAnchor voteLink = page.getAnchorByText("Vote");
         assertThat(voteLink.getHrefAttribute(), is("/vote"));
 
