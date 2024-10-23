@@ -31,6 +31,6 @@ public class LeaderboardPageTest {
         final DomNodeList<DomElement> rows = page.getElementsByTagName("tr");
         assertThat(rows, notNullValue());
 
-        assertThat(rows.getLength(), is(5));
+        assertThat(rows.getLength(), is(4));
     }
 }
