@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity(name = "Video")
 @Table(name = "videos")
-@NamedQuery(name = "getVideos", query = "select v from Video v")
+@NamedQuery(name = "getVideos", query = "select v from Video v order by winRatio asc")
 public class Video {
     @Id
     private Long id;
