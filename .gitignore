@@ -22,3 +22,6 @@ target/
 *.iml
 *.releaseBackup
 atlassian-ide-plugin.xml
+
+# Helidon
+.helidon
