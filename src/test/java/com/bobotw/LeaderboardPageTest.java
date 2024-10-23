@@ -3,6 +3,7 @@ package com.bobotw;
 import io.helidon.microprofile.testing.junit5.HelidonTest;
 import org.htmlunit.WebClient;
 import org.htmlunit.html.DomElement;
+import org.htmlunit.html.DomNodeList;
 import org.htmlunit.html.HtmlPage;
 import org.junit.jupiter.api.Test;
 
@@ -27,9 +28,9 @@ public class LeaderboardPageTest {
 
     @Test
     void itHasATableOfBests() {
-        final DomElement rows = page.getElementsByTagName("tr").getFirst();
+        final DomNodeList<DomElement> rows = page.getElementsByTagName("tr");
         assertThat(rows, notNullValue());
 
-        assertThat(rows.getChildNodes().getLength(), is(4));
+        assertThat(rows.getLength(), is(5));
     }
 }
