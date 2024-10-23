@@ -25,7 +25,7 @@ public class HomePage {
             main(
                 h1("Best of Best of the Worst"),
                 div(
-                    h2("The current Best of the Best is"),
+                    p("The current Best of the Best is"),
                     bestVideo()
                 ).withId("best-of-best")
             )
@@ -36,7 +36,11 @@ public class HomePage {
 
     private DomContent bestVideo() {
         Video video = entityManager.createQuery("select v from Video v order by winRatio limit 1", Video.class).getSingleResult();
-        return div("Title: " + video.getTitle());
+        Episode episode = video.getEpisode();
+        return div(
+            h2(video.getTitle()),
+            p("As seen in episode #" + episode.getId() + ", " + "\"" + episode.getTitle() + "\"")
+        );
     }
 
     private DomContent videos() {
