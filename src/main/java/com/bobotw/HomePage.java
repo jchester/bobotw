@@ -33,7 +33,7 @@ public class HomePage {
     }
 
     private DomContent bestVideo() {
-        Video video = entityManager.createQuery("select v from Video v order by winRatio limit 1", Video.class).getSingleResult();
+        Video video = entityManager.createQuery("select v from Video v order by winRatio.ratio desc limit 1", Video.class).getSingleResult();
         Episode episode = video.getEpisode();
         return div(
             h2(video.getTitle()),
