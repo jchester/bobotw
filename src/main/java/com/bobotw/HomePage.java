@@ -8,8 +8,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-import java.util.List;
-
 import static j2html.TagCreator.*;
 
 @Path("/")
@@ -41,17 +39,5 @@ public class HomePage {
             h2(video.getTitle()),
             p("As seen in episode #" + episode.getId() + ", " + "\"" + episode.getTitle() + "\"")
         );
-    }
-
-    private DomContent videos() {
-        List<Video> videos = entityManager.createNamedQuery("getVideos", Video.class).getResultList();
-
-        return each(videos, video -> li("Title: " + video.getTitle() + "  -- wins: " + video.getWinRatio() * 100 + "%"));
-    }
-
-    private DomContent episodes() {
-        List<Episode> episodes = entityManager.createNamedQuery("getEpisodes", Episode.class).getResultList();
-
-        return each(episodes, episode -> li(": " + episode.getTitle()));
     }
 }
