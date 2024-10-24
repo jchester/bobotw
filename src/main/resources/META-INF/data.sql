@@ -1,6 +1,6 @@
 -- @formatter:off
 insert into episodes(id, title) values (1, 'Episode 1');
-insert into episodes(id, title) values (2, 'Lady Terminator, Lost in Dinosaur World, and Low Blow');
+insert into episodes(id, title) values (2, 'The New Gladiators, Exterminator 2, and The Aftermath');
 insert into episodes(id, title) values (3, 'The Killer Eye, They Bite, and Xtro');
 insert into episodes(id, title) values (4, 'Deadly Prey, Hard Ticket to Hawaii, and Miami Connection');
 insert into episodes(id, title) values (5, 'The Wheel of the Worst');
@@ -12,8 +12,10 @@ insert into episodes(id, title) values (10, 'Bloody Birthday, Crazy Fat Ethel II
 
 
 insert into videos(id, title, episode_id) values (1, 'Russian Terminator', 1);
-insert into videos(id, title, episode_id) values (2, 'Xtro', 2);
-insert into videos(id, title, episode_id) values (3, 'Miami Connection', 3);
+insert into videos(id, title, episode_id) values (2, 'The New Gladiators', 2);
+insert into videos(id, title, episode_id) values (3, 'The Aftermath', 2);
+insert into videos(id, title, episode_id) values (4, 'Xtro', 3);
+insert into videos(id, title, episode_id) values (5, 'Miami Connection', 4);
 
 insert into rankers(id) values ('C5C8C703-5730-4511-BA55-224DD955E20D');
 
