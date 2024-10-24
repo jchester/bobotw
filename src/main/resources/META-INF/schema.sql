@@ -58,5 +58,4 @@ select videos.id                  as video_id
 from videos
          left outer join wins on videos.id = wins.video_id
          left outer join losses on videos.id = losses.video_id
-order by ratio desc
 ;
