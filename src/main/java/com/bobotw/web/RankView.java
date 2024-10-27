@@ -7,8 +7,7 @@ import org.springframework.web.servlet.View;
 
 import java.util.Map;
 
-import static j2html.TagCreator.div;
-import static j2html.TagCreator.p;
+import static j2html.TagCreator.*;
 import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 
 @Component
@@ -20,10 +19,18 @@ public class RankView implements View {
 
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Video leftVideo = (Video) model.get("leftVideo");
+        Video rightVideo = (Video) model.get("rightVideo");
+
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
-            div(
-                p("Just rank it")
+            main(
+                div(
+                    h2(leftVideo.title())
+                ),
+                div(
+                    h2(rightVideo.title())
+                )
             )
         );
 
