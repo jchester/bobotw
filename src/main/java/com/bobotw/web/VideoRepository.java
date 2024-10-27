@@ -3,6 +3,8 @@ package com.bobotw.web;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface VideoRepository extends CrudRepository<Video, Long> {
     @Query("""
          select
@@ -15,4 +17,6 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
         limit 1
         """)
     Video findTopVideoByWinRatio();
+
+    List<Video> findAllByOrderByWinRatioDesc();
 }

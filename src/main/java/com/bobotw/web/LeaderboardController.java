@@ -18,7 +18,7 @@ public class LeaderboardController {
 
     @GetMapping
     public String leaderboard(Model model) {
-        List<Video> videos = (List<Video>) videoRepository.findAll();
+        List<Video> videos = videoRepository.findAllByOrderByWinRatioDesc();
 
         model.addAttribute("videos", videos);
 
