@@ -28,7 +28,7 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
           , episode_id
           , win_ratio
           from videos_with_win_ratios
-          order by appearances
+          order by cast(appearances as decimal) + random()
           limit 1
         """)
     Video findCandidateVideo();
@@ -41,7 +41,7 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
                   , win_ratio
                   from videos_with_win_ratios
                   where id <> :id
-                  order by appearances
+                  order by cast(appearances as decimal) + random()
                   limit 1
         """)
     Video findCandidateVideoExceptId(@Param("id") Long id);
