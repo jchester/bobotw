@@ -37,8 +37,8 @@ public class RankView implements View {
                     div(
                         h2(rightVideo.title()),
                         button("Select as winner"),
-                        input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id())),
-                        input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id()))
+                        input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id())),
+                        input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id()))
                     )
                 ).withMethod("post").withAction("/rank")
             )
