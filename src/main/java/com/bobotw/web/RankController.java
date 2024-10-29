@@ -19,12 +19,14 @@ import java.util.UUID;
 public class RankController {
     final VideoRepository videoRepository;
     final PairRankingRepository pairRankingRepository;
+    private final RankerRepository rankerRepository;
     JdbcAggregateTemplate jdbcAggregateTemplate;
 
     public RankController(VideoRepository videoRepository, RankerRepository rankerRepository, PairRankingRepository pairRankingRepository, JdbcAggregateTemplate jdbcAggregateTemplate) {
         this.videoRepository = videoRepository;
         this.pairRankingRepository = pairRankingRepository;
         this.jdbcAggregateTemplate = jdbcAggregateTemplate;
+        this.rankerRepository = rankerRepository;
     }
 
     @GetMapping("/rank")
@@ -44,6 +46,11 @@ public class RankController {
             newCookie.setSecure(false);
 
             response.addCookie(newCookie);
+        } else {
+            // Deal with case where process has restarted and forgotten an existing cookie
+            if (!rankerRepository.existsById(ranker)) {
+                jdbcAggregateTemplate.insert(new Ranker(ranker));
+            }
         }
 
         Video leftVideo = videoRepository.findCandidateVideo();
