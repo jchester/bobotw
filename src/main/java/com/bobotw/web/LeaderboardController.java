@@ -11,16 +11,20 @@ import java.util.List;
 @RequestMapping("/leaderboard")
 public class LeaderboardController {
     final VideoRepository videoRepository;
+    final PairRankingRepository pairRankingRepository;
 
-    public LeaderboardController(VideoRepository videoRepository) {
+    public LeaderboardController(VideoRepository videoRepository, PairRankingRepository pairRankingRepository) {
         this.videoRepository = videoRepository;
+        this.pairRankingRepository = pairRankingRepository;
     }
 
     @GetMapping
     public String leaderboard(Model model) {
         List<Video> videos = videoRepository.findAllByOrderByWinRatioDesc();
-
         model.addAttribute("videos", videos);
+
+        long countOfRankings = pairRankingRepository.count();
+        model.addAttribute("countOfRankings", countOfRankings);
 
         return "leaderboardPageView";
     }

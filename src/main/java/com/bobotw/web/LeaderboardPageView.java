@@ -4,15 +4,13 @@ import j2html.tags.DomContent;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.View;
 
 import java.util.List;
 import java.util.Map;
 
 import static j2html.TagCreator.*;
-import static org.springframework.http.MediaType.*;
+import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 
 @Component
 public class LeaderboardPageView implements View {
@@ -24,10 +22,12 @@ public class LeaderboardPageView implements View {
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Video> videos = (List<Video>) model.get("videos");
+        Long countOfRankings = (Long) model.get("countOfRankings");
 
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW Leaderboard",
             main(
+                p("With " + countOfRankings + " rankings submitted:"),
                 table(
                     thead(
                         tr(
