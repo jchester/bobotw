@@ -25,12 +25,22 @@ public class RankView implements View {
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
             main(
-                div(
-                    h2(leftVideo.title())
-                ),
-                div(
-                    h2(rightVideo.title())
-                )
+                form(
+                    div(
+                        h2(leftVideo.title()),
+                        button("Select as winner"),
+                        input().isHidden().withName("winner").withValue(Long.toString(leftVideo.id())),
+                        input().isHidden().withName("loser").withValue(Long.toString(rightVideo.id()))
+                    )
+                ).withMethod("post").withAction("/rank"),
+                form(
+                    div(
+                        h2(rightVideo.title()),
+                        button("Select as winner"),
+                        input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id())),
+                        input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id()))
+                    )
+                ).withMethod("post").withAction("/rank")
             )
         );
 
