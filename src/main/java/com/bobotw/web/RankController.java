@@ -31,8 +31,10 @@ public class RankController {
 
     @GetMapping("/rank")
     public ModelAndView rank(Model model, @CookieValue(value = "ranker") @Nullable UUID ranker, HttpServletResponse response) {
+        UUID effectiveUUID;
         if (ranker == null) {
             UUID newUuid = Generators.timeBasedEpochRandomGenerator().generate();
+            effectiveUUID = newUuid;
 
             // This ought to be a RankerRepository, but for reasons I don't understand it doesn't work.
             // The JDBC aggregate template goes one level lower and _does_ work, so here it goes,
@@ -51,12 +53,20 @@ public class RankController {
             if (!rankerRepository.existsById(ranker)) {
                 jdbcAggregateTemplate.insert(new Ranker(ranker));
             }
+
+            effectiveUUID = ranker;
         }
 
-        Video leftVideo = videoRepository.findCandidateVideo();
+        VideoPair pair = videoRepository.findCandidateVideoPairForRanker(effectiveUUID);
+
+        if (pair == null) {
+            return new ModelAndView("noMoreRankView");
+        }
+
+        Video leftVideo = videoRepository.findById(pair.leftId()).get();
         model.addAttribute("leftVideo", leftVideo);
 
-        Video rightVideo = videoRepository.findCandidateVideoExceptId(leftVideo.id());
+        Video rightVideo = videoRepository.findById(pair.rightId()).get();
         model.addAttribute("rightVideo", rightVideo);
 
         return new ModelAndView("rankView");
