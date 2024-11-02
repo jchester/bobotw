@@ -10,9 +10,9 @@ values (1, 'Russian Terminator', 'Episode 1'),
        (9, 'Gymkata', 'V-World Matrix, The Amazing Bulk, and ????')
 ;
 
-insert into tags(id, text)
-values (1, 'Wheel of the Worst'),
-       (2, 'Colin from Canada');
+insert into tags(id, text, color)
+values (1, 'Wheel of the Worst', '#77bb41'),
+       (2, 'Colin from Canada', '#ff3399');
 
 insert into tags_on_videos(video_id, tag_id)
 values (5, 1),

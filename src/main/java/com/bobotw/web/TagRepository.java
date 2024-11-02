@@ -10,7 +10,8 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
     @Query("""
             select
                 t.id,
-                t.text
+                t.text,
+                t.color
             from tags t
             join tags_on_videos tov on t.id = tov.tag_id
             where tov.video_id = :videoId
