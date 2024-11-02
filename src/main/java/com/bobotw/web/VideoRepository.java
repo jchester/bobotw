@@ -12,7 +12,7 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
          select
            id
          , title
-         , episode_id
+         , episode_title
          , win_ratio
         from videos_with_win_ratios
         order by win_ratio desc

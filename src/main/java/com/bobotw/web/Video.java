@@ -4,5 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("VIDEOS_WITH_WIN_RATIOS")
-public record Video(@Id Long id, String title, Long episodeId, Double winRatio) {}
+public record Video(@Id Long id, String title, String episodeTitle, Double winRatio) {
+}
 

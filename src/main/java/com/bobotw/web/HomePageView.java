@@ -20,7 +20,6 @@ public class HomePageView implements View {
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Video video = (Video) model.get("video");
-        Episode episode = (Episode) model.get("episode");
 
         PageLayoutFragment fragment = new PageLayoutFragment(
             "Best of Best of the Worst",
@@ -29,7 +28,7 @@ public class HomePageView implements View {
                 div(
                     p("The current Best of the Best is"),
                     h2(video.title()),
-                    p("As seen in the episode entitled \"" + episode.title() + "\"")
+                    p("As seen in the episode entitled \"" + video.episodeTitle() + "\"")
                 ).withId("best-of-best")
             )
         );
