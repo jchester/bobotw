@@ -1,10 +1,12 @@
 package com.bobotw.web;
 
+import j2html.tags.DomContent;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.View;
 
+import java.util.List;
 import java.util.Map;
 
 import static j2html.TagCreator.*;
@@ -21,6 +23,8 @@ public class RankView implements View {
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Video leftVideo = (Video) model.get("leftVideo");
         Video rightVideo = (Video) model.get("rightVideo");
+        List<Tag> leftTags = (List<Tag>) model.get("leftTags");
+        List<Tag> rightTags = (List<Tag>) model.get("rightTags");
 
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
@@ -30,7 +34,10 @@ public class RankView implements View {
                         h2(leftVideo.title()),
                         button("Select as winner"),
                         input().isHidden().withName("winner").withValue(Long.toString(leftVideo.id())),
-                        input().isHidden().withName("loser").withValue(Long.toString(rightVideo.id()))
+                        input().isHidden().withName("loser").withValue(Long.toString(rightVideo.id())),
+                        div(
+                            tags(leftTags)
+                        ).withClass("tags")
                     )
                 ).withMethod("post").withAction("/rank"),
                 form(
@@ -38,12 +45,19 @@ public class RankView implements View {
                         h2(rightVideo.title()),
                         button("Select as winner"),
                         input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id())),
-                        input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id()))
+                        input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id())),
+                        div(
+                            tags(rightTags)
+                        ).withClass("tags")
                     )
                 ).withMethod("post").withAction("/rank")
             )
         );
 
         response.getWriter().write(fragment.getFragment().render());
+    }
+
+    private DomContent tags(List<Tag> tags) {
+        return each(tags, tag -> span(tag.text()));
     }
 }

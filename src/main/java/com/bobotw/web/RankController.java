@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -21,12 +22,14 @@ public class RankController {
     final PairRankingRepository pairRankingRepository;
     private final RankerRepository rankerRepository;
     JdbcAggregateTemplate jdbcAggregateTemplate;
+    private final TagRepository tagRepository;
 
-    public RankController(VideoRepository videoRepository, RankerRepository rankerRepository, PairRankingRepository pairRankingRepository, JdbcAggregateTemplate jdbcAggregateTemplate) {
+    public RankController(VideoRepository videoRepository, RankerRepository rankerRepository, PairRankingRepository pairRankingRepository, JdbcAggregateTemplate jdbcAggregateTemplate, TagRepository tagRepository) {
         this.videoRepository = videoRepository;
         this.pairRankingRepository = pairRankingRepository;
         this.jdbcAggregateTemplate = jdbcAggregateTemplate;
         this.rankerRepository = rankerRepository;
+        this.tagRepository = tagRepository;
     }
 
     @GetMapping("/rank")
@@ -65,9 +68,13 @@ public class RankController {
 
         Video leftVideo = videoRepository.findById(pair.leftId()).get();
         model.addAttribute("leftVideo", leftVideo);
+        List<Tag> leftTags = tagRepository.findTagsForVideo(leftVideo.id());
+        model.addAttribute("leftTags", leftTags);
 
         Video rightVideo = videoRepository.findById(pair.rightId()).get();
         model.addAttribute("rightVideo", rightVideo);
+        List<Tag> rightTags = tagRepository.findTagsForVideo(rightVideo.id());
+        model.addAttribute("rightTags", rightTags);
 
         return new ModelAndView("rankView");
     }
