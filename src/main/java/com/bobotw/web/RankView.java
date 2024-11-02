@@ -30,13 +30,18 @@ public class RankView implements View {
             "BOBOTW: Rank!",
             main(
                 style("""
+                        .tags {
+                        padding: 0.5em;
+                        }
                         .tag {
                         display: inline-block;           /* Ensures the span keeps its pill shape */
                         padding: 0.25em 1em;             /* Adds vertical and horizontal padding */
+                        margin: 0 0.5em 0 0;
                         color: white;                    /* Sets the text color */
                         border-radius: 9999px;           /* Makes the element fully rounded */
                         font-size: 0.9em;                /* Adjusts font size */
                         text-align: center;              /* Centers the text */
+                        font-weight: bold;
                         }
                     """),
                 form(
