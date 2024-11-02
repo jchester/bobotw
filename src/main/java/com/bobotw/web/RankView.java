@@ -29,6 +29,17 @@ public class RankView implements View {
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
             main(
+                style("""
+                        .tag {
+                        display: inline-block;           /* Ensures the span keeps its pill shape */
+                        padding: 0.25em 1em;             /* Adds vertical and horizontal padding */
+                        background-color: #4CAF50;       /* Sets the pill's background color */
+                        color: white;                    /* Sets the text color */
+                        border-radius: 9999px;           /* Makes the element fully rounded */
+                        font-size: 0.9em;                /* Adjusts font size */
+                        text-align: center;              /* Centers the text */
+                        }
+                    """),
                 form(
                     div(
                         h2(leftVideo.title()),
@@ -58,6 +69,6 @@ public class RankView implements View {
     }
 
     private DomContent tags(List<Tag> tags) {
-        return each(tags, tag -> span(tag.text()));
+        return each(tags, tag -> span(tag.text()).withClass("tag"));
     }
 }
