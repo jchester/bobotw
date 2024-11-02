@@ -14,6 +14,8 @@ import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 
 @Component
 public class LeaderboardPageView implements View {
+    private static final Double TO_PERCENT = 100.0;
+
     @Override
     public String getContentType() {
         return TEXT_HTML_VALUE;
@@ -48,7 +50,7 @@ public class LeaderboardPageView implements View {
     private DomContent videos(List<Video> videos) {
         return each(videos, video -> tr(
             td(video.title()),
-            td(Double.toString(video.winRatio()))
+            td(String.format("%.2f", video.winRatio() * TO_PERCENT))
         ));
     }
 
