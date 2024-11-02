@@ -14,7 +14,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String home(Model model) {
-        Video video = videoRepository.findTopVideoByWinRatio();
+        Video video = videoRepository.findTopVideoByOrderByWinRatioDesc();
         model.addAttribute("video", video);
 
         return "homePageView";

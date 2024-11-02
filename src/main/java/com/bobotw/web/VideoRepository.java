@@ -8,17 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface VideoRepository extends CrudRepository<Video, Long> {
-    @Query("""
-         select
-           id
-         , title
-         , episode_title
-         , win_ratio
-        from videos_with_win_ratios
-        order by win_ratio desc
-        limit 1
-        """)
-    Video findTopVideoByWinRatio();
+    Video findTopVideoByOrderByWinRatioDesc();
 
     List<Video> findAllByOrderByWinRatioDesc();
 
