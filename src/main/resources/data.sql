@@ -10,7 +10,9 @@ values (1, 'Russian Terminator', 'Episode 1'),
        (9, 'Gymkata', 'V-World Matrix, The Amazing Bulk, and ????'),
        (10, 'Crazy Fat Ethel II', 'Bloody Birthday, Crazy Fat Ethel II, and Psycho From Texas'),
        (11, 'Skull Forest', 'Night Beast, Trick or Treat, and Skull Forest'),
-       (12, 'Incredible Instant Adoring Boyfriend', 'Wheel of the Worst #3')
+       (12, 'Incredible Instant Adoring Boyfriend', 'Wheel of the Worst #3'),
+       (13, 'The Deadliest Prey', 'Playing Dangerous 2, The Exterminator, and The Deadliest Prey'),
+       (14, 'Elves', 'Elves, Santa Claus, and Christmas Vacation 2')
 ;
 
 insert into tags(id, text, color)
@@ -28,7 +30,9 @@ values (1, '2013', '#48d3aa'),
        (12, '2024', '#48d3bf'),
        (13, 'Wheel of the Worst', '#77bb41'),
        (14, '🇨🇦 Colin from Canada', '#d80621'),
-       (15, '🎃 Halloween Spooktacular', '#ff6600')
+       (15, '🎃 Halloween Spooktacular', '#ff6600'),
+       (16, 'Sequel', '#341253'),
+       (17, '🎅 Christmas', '#009933')
 ;
 
 insert into tags_on_videos(video_id, tag_id)
@@ -46,6 +50,8 @@ values
     (10, 1),
     (11, 1),
     (12, 1),
+    (13, 1),
+    (14, 1),
     -- Wheel
     (5, 13),
     (8, 13),
@@ -53,5 +59,9 @@ values
     -- Colin from Canada
     (9, 14),
     -- Halloween
-    (11, 15)
+    (11, 15),
+    -- Sequel show
+    (13, 16),
+    -- Christmas
+    (14, 17)
 ;
