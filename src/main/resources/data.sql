@@ -9,7 +9,8 @@ values (1, 'Russian Terminator', 'Episode 1'),
        (8, 'Gary Coleman For Safety''s Sake', 'Wheel of the Worst #2'),
        (9, 'Gymkata', 'V-World Matrix, The Amazing Bulk, and ????'),
        (10, 'Crazy Fat Ethel II', 'Bloody Birthday, Crazy Fat Ethel II, and Psycho From Texas'),
-       (11, 'Skull Forest', 'Night Beast, Trick or Treat, and Skull Forest')
+       (11, 'Skull Forest', 'Night Beast, Trick or Treat, and Skull Forest'),
+       (12, 'Incredible Instant Adoring Boyfriend', 'Wheel of the Worst #3')
 ;
 
 insert into tags(id, text, color)
@@ -43,9 +44,12 @@ values
     (8, 1),
     (9, 1),
     (10, 1),
+    (11, 1),
+    (12, 1),
     -- Wheel
     (5, 13),
     (8, 13),
+    (12, 13),
     -- Colin from Canada
     (9, 14),
     -- Halloween
