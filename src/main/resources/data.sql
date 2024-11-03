@@ -27,8 +27,7 @@ values (1, '2013', '#48d3aa'),
        (12, '2024', '#48d3bf'),
        (13, 'Wheel of the Worst', '#77bb41'),
        (14, '🇨🇦 Colin from Canada', '#d80621'),
-       (15, 'Gillian', '#95f90a'),
-       (16, '🎃 Halloween Spooktacular', '#ff6600')
+       (15, '🎃 Halloween Spooktacular', '#ff6600')
 ;
 
 insert into tags_on_videos(video_id, tag_id)
@@ -49,8 +48,6 @@ values
     (8, 13),
     -- Colin from Canada
     (9, 14),
-    -- Gillian
-    (10, 15),
-    -- Halloween Spooktacular
-    (11, 16)
+    -- Halloween
+    (11, 15)
 ;
