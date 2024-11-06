@@ -32,7 +32,8 @@ values (1, '2013', '#48d3aa'),
        (14, '🇨🇦 Colin from Canada', '#d80621'),
        (15, '🎃 Halloween Spooktacular', '#ff6600'),
        (16, 'Sequel', '#341253'),
-       (17, '🎅 Christmas', '#009933')
+       (17, '🎅 Christmas', '#009933'),
+       (18, '🥷 Len Kabasinski', '#222222')
 ;
 
 insert into tags_on_videos(video_id, tag_id)
@@ -63,5 +64,7 @@ values
     -- Sequel show
     (13, 16),
     -- Christmas
-    (14, 17)
+    (14, 17),
+    -- Len Kabasinski
+    (11, 18)
 ;
