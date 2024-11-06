@@ -25,6 +25,8 @@ public class RankView implements View {
         Video rightVideo = (Video) model.get("rightVideo");
         List<Tag> leftTags = (List<Tag>) model.get("leftTags");
         List<Tag> rightTags = (List<Tag>) model.get("rightTags");
+        Long rankedCount = (Long) model.get("rankedCount");
+        Long possibleCount = (Long) model.get("possibleCount");
 
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
@@ -44,6 +46,7 @@ public class RankView implements View {
                         font-weight: bold;
                         }
                     """),
+                p("You have ranked " + rankedCount + "/" + possibleCount + " matchups."),
                 form(
                     div(
                         h2(leftVideo.title()),

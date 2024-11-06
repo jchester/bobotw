@@ -76,6 +76,13 @@ public class RankController {
         List<Tag> rightTags = tagRepository.findTagsForVideo(rightVideo.id());
         model.addAttribute("rightTags", rightTags);
 
+        Long rankedCount = pairRankingRepository.countByRankerId(effectiveUUID);
+        model.addAttribute("rankedCount", rankedCount);
+
+        long videoCount = videoRepository.count();
+        Long possibleCount = (videoCount * (videoCount - 1)) / 2;
+        model.addAttribute("possibleCount", possibleCount);
+
         return new ModelAndView("rankView");
     }
 
