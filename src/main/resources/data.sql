@@ -12,7 +12,13 @@ values (1, 'Russian Terminator', 'Episode 1'),
        (11, 'Skull Forest', 'Night Beast, Trick or Treat, and Skull Forest'),
        (12, 'Incredible Instant Adoring Boyfriend', 'Wheel of the Worst #3'),
        (13, 'The Deadliest Prey', 'Playing Dangerous 2, The Exterminator, and The Deadliest Prey'),
-       (14, 'Elves', 'Elves, Santa Claus, and Christmas Vacation 2')
+       (14, 'Elves', 'Elves, Santa Claus, and Christmas Vacation 2'),
+       (15, 'Yor: The Hunter from the Future', 'Robo-C.H.I.C., Alien Seed, and Yor: The Hunter from the Future'),
+       (16, 'The Shoji Tabuchi Show', 'Wheel of the Worst #4'),
+       (17, 'Roger Corman''s Fantastic Four', 'Supergirl, Captain America (1990), and Roger Corman''s Fantastic Four'),
+       (18, 'Lethal Ninja', 'Ninja Movies'),
+       (19, 'SOS', 'Wheel of the Worst #5'),
+       (20, 'Terror in Beverly Hills', 'Ghetto Blaster, Terror in Beverly Hills, and Killing American Style')
 ;
 
 insert into tags(id, text, color)
@@ -29,16 +35,18 @@ values (1, '2013', '#48d3aa'),
        (11, '2023', '#48d3be'),
        (12, '2024', '#48d3bf'),
        (13, 'Wheel of the Worst', '#77bb41'),
-       (14, '🇨🇦 Colin from Canada', '#d80621'),
+       (14, '🇨🇦 Colin and/or Jim from Canada', '#d80621'),
        (15, '🎃 Halloween Spooktacular', '#ff6600'),
        (16, 'Sequel', '#341253'),
        (17, '🎅 Christmas', '#009933'),
-       (18, '🥷 Len Kabasinski', '#222222')
+       (18, '🥷 Len Kabasinski', '#121212'),
+       (19, 'Cameron Mitchell', '#34de53')
 ;
 
 insert into tags_on_videos(video_id, tag_id)
 values
     -- Years
+    -- 2013
     (1, 1),
     (2, 1),
     (3, 1),
@@ -53,12 +61,22 @@ values
     (12, 1),
     (13, 1),
     (14, 1),
+    -- 2014
+    (15, 2),
+    (16, 2),
+    (17, 2),
+    (18, 2),
+    (19, 2),
+    (20, 2),
     -- Wheel
     (5, 13),
     (8, 13),
     (12, 13),
-    -- Colin from Canada
+    (16, 13),
+    (19, 13),
+    -- Colin/Jim from Canada
     (9, 14),
+    (20, 14),
     -- Halloween
     (11, 15),
     -- Sequel show
@@ -66,5 +84,8 @@ values
     -- Christmas
     (14, 17),
     -- Len Kabasinski
-    (11, 18)
+    (11, 18),
+    (18, 18),
+    -- Cameron Mitchell
+    (20, 19)
 ;
