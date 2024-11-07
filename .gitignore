@@ -23,9 +23,6 @@ target/
 *.releaseBackup
 atlassian-ide-plugin.xml
 
-# Helidon
-.helidon
-
 # Fucking macOS
 .DS_Store
 
