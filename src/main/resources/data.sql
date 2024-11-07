@@ -23,70 +23,35 @@ merge into videos (id, title, episode_title) key (id)
 ;
 
 merge into tags (id, text, color) key (id)
-    values (1, '2013', '#48d3aa'),
-           (2, '2014', '#48d3ab'),
-           (3, '2015', '#48d3ac'),
-           (4, '2016', '#48d3ad'),
-           (5, '2017', '#48d3ae'),
-           (6, '2018', '#48d3af'),
-           (7, '2019', '#48d3ba'),
-           (8, '2020', '#48d3bb'),
-           (9, '2021', '#48d3bc'),
-           (10, '2022', '#48d3bd'),
-           (11, '2023', '#48d3be'),
-           (12, '2024', '#48d3bf'),
-           (13, 'Wheel of the Worst', '#77bb41'),
-           (14, '🇨🇦 Colin and/or Jim from Canada', '#d80621'),
-           (15, '🎃 Halloween Spooktacular', '#ff6600'),
-           (16, 'Sequel', '#341253'),
-           (17, '🎅 Christmas', '#009933'),
-           (18, '🥷 Len Kabasinski', '#121212'),
-           (19, 'Cameron Mitchell', '#34de53')
+    values (1, 'Wheel of the Worst', '#77bb41'),
+           (2, '🇨🇦 Colin and/or Jim from Canada', '#d80621'),
+           (3, '🎃 Halloween Spooktacular', '#ff6600'),
+           (4, 'Sequel', '#341253'),
+           (5, '🎅 Christmas', '#009933'),
+           (6, '🥷 Len Kabasinski', '#121212'),
+           (7, 'Cameron Mitchell', '#34de53')
 ;
 
-merge into tags_on_videos (video_id, tag_id) key (id)
+merge into tags_on_videos (id, video_id, tag_id) key (id)
     values
-        -- Years
-        -- 2013
-        (1, 1),
-        (2, 1),
-        (3, 1),
-        (4, 1),
-        (5, 1),
-        (6, 1),
-        (7, 1),
-        (8, 1),
-        (9, 1),
-        (10, 1),
-        (11, 1),
-        (12, 1),
-        (13, 1),
-        (14, 1),
-        -- 2014
-        (15, 2),
-        (16, 2),
-        (17, 2),
-        (18, 2),
-        (19, 2),
-        (20, 2),
         -- Wheel
-        (5, 13),
-        (8, 13),
-        (12, 13),
-        (16, 13),
-        (19, 13),
+        (1, 5, 1),
+        (2, 8, 1),
+        (3, 12, 1),
+        (4, 16, 1),
+        (5, 19, 1),
         -- Colin/Jim from Canada
-        (9, 14),
-        (20, 14),
+        (6, 9, 2),
+        (7, 20, 2),
         -- Halloween
-        (11, 15),
+        (8, 11, 3),
         -- Sequel show
-        (13, 16),
+        (9, 13, 4),
         -- Christmas
-        (14, 17),
+        (10, 14, 5),
         -- Len Kabasinski
-        (11, 18),
-        (18, 18),
+        (11, 11, 6),
+        (12, 18, 6),
         -- Cameron Mitchell
-        (20, 19)
+        (13, 20, 7)
 ;
