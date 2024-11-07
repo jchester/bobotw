@@ -28,3 +28,5 @@ atlassian-ide-plugin.xml
 
 # Fucking macOS
 .DS_Store
+
+db/
