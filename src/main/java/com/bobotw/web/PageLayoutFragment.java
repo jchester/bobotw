@@ -1,12 +1,6 @@
 package com.bobotw.web;
 
 import j2html.tags.DomContent;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.MediaType;
-import org.springframework.web.servlet.View;
-
-import java.util.Map;
 
 import static j2html.TagCreator.*;
 
@@ -38,7 +32,10 @@ public class PageLayoutFragment {
                         )
                     )
                 ),
-                mainContent
+                mainContent,
+                footer(
+                    p(em("This site is in no way affiliated with \"Toy Story\" or Red Letter Media."))
+                )
             )
         ).withData("theme", "dark");
     }
