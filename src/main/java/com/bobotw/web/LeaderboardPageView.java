@@ -34,7 +34,7 @@ public class LeaderboardPageView implements View {
                     thead(
                         tr(
                             th("Title"),
-                            th("Win Ratio")
+                            th("Adjusted Win Ratio")
                         )
                     ),
                     tbody(
@@ -50,7 +50,7 @@ public class LeaderboardPageView implements View {
     private DomContent videos(List<Video> videos) {
         return each(videos, video -> tr(
             td(video.title()),
-            td(String.format("%.2f", video.winRatio() * TO_PERCENT))
+            td(String.format("%.2f", video.confidenceLowerBound() * TO_PERCENT))
         ));
     }
 

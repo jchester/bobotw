@@ -79,12 +79,21 @@ from videos
          left outer join losses on videos.id = losses.video_id
 ;
 
-create or replace view videos_with_win_ratios as
+create or replace view videos_with_confidence_bounds as
 select v.id
      , v.title
      , v.episode_title
-     , wr.win_ratio
      , wr.appearances
+     , case
+           when wr.appearances > 0 then
+               -- https://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+               ((wr.wins + 1.9208) / wr.appearances -
+                1.96 * sqrt((wr.wins * wr.losses) / wr.appearances + 0.9604) /
+                wr.appearances) / (1 + 3.8416 / wr.appearances)
+           else
+               0
+    end as confidence_lower_bound
 from videos v
          join win_ratios wr on v.id = wr.video_id
+order by wr.appearances + random() desc
 ;

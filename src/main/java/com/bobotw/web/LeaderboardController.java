@@ -20,7 +20,7 @@ public class LeaderboardController {
 
     @GetMapping
     public String leaderboard(Model model) {
-        List<Video> videos = videoRepository.findAllByOrderByWinRatioDesc();
+        List<Video> videos = videoRepository.findAllByOrderByConfidenceLowerBoundDesc();
         model.addAttribute("videos", videos);
 
         long countOfRankings = pairRankingRepository.count();

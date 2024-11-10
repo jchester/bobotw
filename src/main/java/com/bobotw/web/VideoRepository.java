@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.UUID;
 
 public interface VideoRepository extends CrudRepository<Video, Long> {
-    Video findTopVideoByOrderByWinRatioDesc();
+    Video findTopVideoByOrderByConfidenceLowerBoundDesc();
 
-    List<Video> findAllByOrderByWinRatioDesc();
+    List<Video> findAllByOrderByConfidenceLowerBoundDesc();
 
     @Query("""
         select l.id as left_id
              , r.id as right_id
-        from videos_with_win_ratios l
-                 join videos_with_win_ratios r on l.id <> r.id
+        from videos_with_confidence_bounds l
+                 join videos_with_confidence_bounds r on l.id <> r.id
           where not exists(select 1
                          from pair_rankings
                          where ranker_id = :ranker
