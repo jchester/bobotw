@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
-@Table("PAIR_RANKINGS")
+@Table("pair_rankings")
 public record PairRanking(@Id Long id, UUID rankerId, Long winnerId, Long loserId) {
 }
 

@@ -69,7 +69,7 @@ select videos.id                                           as video_id
      , coalesce(wins.wins, 0) + coalesce(losses.losses, 0) as appearances
      , case
            when wins.wins is not null and losses.losses is not null
-               then cast(wins.wins as double) / (wins.wins + losses.losses)
+               then cast(wins.wins as float) / (wins.wins + losses.losses)
            when wins.wins is not null and losses.losses is null then 1.0
            when wins.wins is null and losses.losses is not null then 0.0
            when wins.wins is null and losses.losses is null then 0.0
