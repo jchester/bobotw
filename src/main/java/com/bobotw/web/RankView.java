@@ -36,7 +36,7 @@ public class RankView implements View {
                 form(
                     div(
                         button("Select as winner"),
-                        h2(leftVideo.title()),
+                        h4(leftVideo.title()),
                         img().withSrc("/images/jay-bauman.jpg"),
                         input().isHidden().withName("winner").withValue(Long.toString(leftVideo.id())),
                         input().isHidden().withName("loser").withValue(Long.toString(rightVideo.id())),
@@ -48,7 +48,7 @@ public class RankView implements View {
                 form(
                     div(
                         button("Select as winner"),
-                        h2(rightVideo.title()),
+                        h4(rightVideo.title()),
                         img().withSrc("/images/mike-stoklasa.jpg"),
                         input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id())),
                         input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id())),
