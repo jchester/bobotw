@@ -31,43 +31,31 @@ public class RankView implements View {
         PageLayoutFragment fragment = new PageLayoutFragment(
             "BOBOTW: Rank!",
             main(
-                style("""
-                        .tags {
-                        padding: 0.5em;
-                        }
-                        .tag {
-                        display: inline-block;           /* Ensures the span keeps its pill shape */
-                        padding: 0.25em 1em;             /* Adds vertical and horizontal padding */
-                        margin: 0 0.5em 0 0;
-                        color: white;                    /* Sets the text color */
-                        border-radius: 9999px;           /* Makes the element fully rounded */
-                        font-size: 0.9em;                /* Adjusts font size */
-                        text-align: center;              /* Centers the text */
-                        font-weight: bold;
-                        }
-                    """),
+                link().withRel("stylesheet").withHref("/style/rank.css"),
                 p("You have ranked " + rankedCount + "/" + possibleCount + " matchups."),
                 form(
                     div(
-                        h2(leftVideo.title()),
                         button("Select as winner"),
+                        h2(leftVideo.title()),
+                        img().withSrc("/images/jay-bauman.jpg"),
                         input().isHidden().withName("winner").withValue(Long.toString(leftVideo.id())),
                         input().isHidden().withName("loser").withValue(Long.toString(rightVideo.id())),
                         div(
                             tags(leftTags)
                         ).withClass("tags")
-                    )
+                    ).withClass("card")
                 ).withMethod("post").withAction("/rank"),
                 form(
                     div(
-                        h2(rightVideo.title()),
                         button("Select as winner"),
+                        h2(rightVideo.title()),
+                        img().withSrc("/images/mike-stoklasa.jpg"),
                         input().isHidden().withName("winner").withValue(Long.toString(rightVideo.id())),
                         input().isHidden().withName("loser").withValue(Long.toString(leftVideo.id())),
                         div(
                             tags(rightTags)
                         ).withClass("tags")
-                    )
+                    ).withClass("card")
                 ).withMethod("post").withAction("/rank")
             )
         );
