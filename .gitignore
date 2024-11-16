@@ -27,3 +27,5 @@ atlassian-ide-plugin.xml
 .DS_Store
 
 db/
+
+config/do_token
