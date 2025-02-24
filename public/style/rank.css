@@ -1,0 +1,42 @@
+.card {
+    display: grid;
+    grid-template:
+                            "btn title title"
+                            "photo tags tags";
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.tags {
+    padding: 0.5em;
+    grid-area: tags;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25em 1em;
+    margin: 0.25em 0.5em;
+    color: white;
+    border-radius: 9999px;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card h2 {
+    grid-area: title;
+}
+
+.card img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    grid-area: photo;
+}
+
+.card button {
+    grid-area: btn;
+}
