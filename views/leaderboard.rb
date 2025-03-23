@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+require_relative "layout"
+
+class Leaderboard < Phlex::HTML
+  def initialize(count_of_rankings:, videos:)
+    @count_of_rankings = count_of_rankings
+    @videos = videos
+  end
+
+  def view_template
+    render Layout.new(title: "BOBOTW Leaderboard") do
+      main {
+        p { "With #{@count_of_rankings} rankings submitted:"}
+        table {
+          thead {
+            tr {
+              th { "Title" }
+              th { "Adjusted Win %" }
+              th { "Times Ranked" }
+            }
+            videos
+          }
+        }
+      }
+    end
+  end
+
+  private
+
+  def videos
+    tbody do
+      @videos.each do |video|
+        tr {
+          td { video[:title] }
+          td { "%0.3f" % (video[:confidence_lower_bound] * 100.0) }
+          td { video[:appearances] }
+        }
+      end
+    end
+  end
+end

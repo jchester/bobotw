@@ -7,6 +7,7 @@ require "uuidx"
 require_relative "views/layout"
 require_relative "views/home_page"
 require_relative "views/rank"
+require_relative "views/leaderboard"
 
 SESSION_SECRET = File.read("secret")
 
@@ -46,7 +47,7 @@ class App < Sinatra::Application
                          and winner_id in (l.video_id, r.video_id)
                          and loser_id in (l.video_id, r.video_id))
       order by cast(l.appearances as decimal) + cast(r.appearances as decimal) 
-                   + ((random() / 9223372036854775807.0 + 1) / 2.0) -- hack to get random in range [0, 1]
+                   + ((random() + 9223372036854775808) / 18446744073709551616) -- hack to get random in range [0, 1]
       limit 1
     SQL
 
@@ -72,6 +73,13 @@ class App < Sinatra::Application
     DB[:pair_rankings].insert(ranker_id:, winner_id:, loser_id:)
 
     redirect to("/rank")
+  end
+
+  get '/leaderboard' do
+    count_of_rankings = DB[:pair_rankings].count
+    videos = DB[:videos_with_confidence_bounds]
+
+    phlex Leaderboard.new(count_of_rankings:, videos:)
   end
 end
 

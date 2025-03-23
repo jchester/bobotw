@@ -88,6 +88,5 @@ select v.video_id
     end as confidence_lower_bound
 from videos v
          join win_ratios wr on v.video_id = wr.video_id
--- hack to get random() to be [0, 1]
-order by wr.appearances + ((random() / 9223372036854775807.0 + 1) / 2.0) desc
+order by confidence_lower_bound desc, appearances desc
 ;
