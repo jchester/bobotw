@@ -35,6 +35,7 @@ GEM
       tilt (~> 2.0)
     sqlite3 (2.6.0-arm64-darwin)
     tilt (2.6.0)
+    uuidx (0.10.0)
 
 PLATFORMS
   arm64-darwin-22
@@ -47,6 +48,7 @@ DEPENDENCIES
   sequel
   sinatra
   sqlite3
+  uuidx
 
 BUNDLED WITH
    2.4.12
