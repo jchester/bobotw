@@ -1,37 +1,37 @@
 create table if not exists videos
 (
-    id            integer primary key autoincrement,
+    video_id      integer primary key autoincrement,
     title         text not null,
     episode_title text not null
 );
 
 create table if not exists tags
 (
-    id    integer primary key autoincrement,
-    text  text not null,
-    color text not null
+    tag_id integer primary key autoincrement,
+    text   text not null,
+    color  text not null
 );
 
 create table if not exists tags_on_videos
 (
-    id       integer primary key autoincrement,
-    video_id integer not null references videos (id),
-    tag_id   integer not null references tags (id),
+    tov_id   integer primary key autoincrement,
+    video_id integer not null references videos (video_id),
+    tag_id   integer not null references tags (tag_id),
 
     unique (video_id, tag_id)
 );
 
 create table if not exists rankers
 (
-    id uuid not null
+    ranker_id uuid not null
 );
 
 create table if not exists pair_rankings
 (
-    id        integer primary key autoincrement,
-    ranker_id uuid    not null references rankers (id),
-    winner_id integer not null references videos (id),
-    loser_id  integer not null references videos (id),
+    pair_id   integer primary key autoincrement,
+    ranker_id uuid    not null references rankers (ranker_id),
+    winner_id integer not null references videos (video_id),
+    loser_id  integer not null references videos (video_id),
 
     unique (ranker_id, winner_id, loser_id),
     check (winner_id <> loser_id)
@@ -56,7 +56,7 @@ group by loser_id
 ;
 
 create view win_ratios as
-select videos.id                                           as video_id
+select videos.video_id                                     as video_id
      , coalesce(wins.wins, 0)                              as wins
      , coalesce(losses.losses, 0)                          as losses
      , coalesce(wins.wins, 0) + coalesce(losses.losses, 0) as appearances
@@ -68,12 +68,12 @@ select videos.id                                           as video_id
            when wins.wins is null and losses.losses is null then 0.0
     end                                                    as win_ratio
 from videos
-         left outer join wins on videos.id = wins.video_id
-         left outer join losses on videos.id = losses.video_id
+         left outer join wins on videos.video_id = wins.video_id
+         left outer join losses on videos.video_id = losses.video_id
 ;
 
 create view videos_with_confidence_bounds as
-select v.id
+select v.video_id
      , v.title
      , v.episode_title
      , wr.appearances
@@ -87,7 +87,7 @@ select v.id
                0
     end as confidence_lower_bound
 from videos v
-         join win_ratios wr on v.id = wr.video_id
+         join win_ratios wr on v.video_id = wr.video_id
 -- hack to get random() to be [0, 1]
 order by wr.appearances + ((random() / 9223372036854775807.0 + 1) / 2.0) desc
 ;

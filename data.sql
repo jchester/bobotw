@@ -1,4 +1,4 @@
-insert into videos (id, title, episode_title)
+insert into videos (video_id, title, episode_title)
 values (1, 'Russian Terminator', 'Episode 1'),
        (2, 'Aftermath', 'The New Gladiators, Exterminator 2, and The Aftermath'),
        (3, 'Xtro', 'The Killer Eye, They Bite, and Xtro'),
@@ -152,7 +152,7 @@ values (1, 'Russian Terminator', 'Episode 1'),
 on conflict do nothing
 ;
 
-insert into tags (id, text, color)
+insert into tags (tag_id, text, color)
 values (1, 'Wheel of the Worst', '#77bb41'),
        (2, '🇨🇦 Colin and/or Jim from Canada', '#d80621'),
        (3, '🎃 Halloween Spooktacular', '#ff6600'),
