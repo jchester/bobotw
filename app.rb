@@ -18,8 +18,7 @@ class App < Sinatra::Application
   set :sessions, :expire_after => 60 * 24 * 365 * 10 # expire after 10ish years
 
   DB = Sequel.sqlite("bobotw.db", loggers: [Logger.new('log/db.log', level: Logger::DEBUG)])
-
-  tags = DB[:tags]
+  DB.run("PRAGMA foreign_keys = ON")
 
   get '/' do
     top_video = DB[:videos_with_confidence_bounds].reverse(:confidence_lower_bound)
@@ -58,14 +57,21 @@ class App < Sinatra::Application
     left_video = videos[video_id: video_ids[:left_id]]
     right_video = videos[video_id: video_ids[:right_id]]
 
-    left_tags = DB[:tags].join[:tags_on_videos].join[:videos].where(:id => left_video[:id])
-    right_tags = DB[:tags].join[:tags_on_videos].join[:videos].where(:id => right_video[:id])
-
     ranked = DB[:pair_rankings].count(:ranker_id => session[:ranker])
     video_count = DB[:videos].count
     possible = (video_count * (video_count - 1)) / 2
 
-    phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
+    phlex Rank.new(left_video:, right_video:, ranked:, possible:)
+  end
+
+  post '/rank' do
+    ranker_id = session[:ranker]
+    winner_id = params[:winner_id]
+    loser_id = params[:loser_id]
+
+    DB[:pair_rankings].insert(ranker_id:, winner_id:, loser_id:)
+
+    redirect to("/rank")
   end
 end
 

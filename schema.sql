@@ -23,7 +23,7 @@ create table if not exists tags_on_videos
 
 create table if not exists rankers
 (
-    ranker_id uuid not null
+    ranker_id uuid primary key
 );
 
 create table if not exists pair_rankings
