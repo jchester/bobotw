@@ -15,7 +15,7 @@ class HomePage < Phlex::HTML
         div {
           p { "The current Best of Best of the Worst is" }
           h2 { @top_title }
-          p { "As seen in the episode entitled #{@episode_title}" }
+          p { "As seen in the episode entitled '#{@episode_title}'" }
         }
       }
     end
