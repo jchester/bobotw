@@ -81,6 +81,10 @@ class App < Sinatra::Application
 
     phlex Leaderboard.new(count_of_rankings:, videos:)
   end
+
+  get '/about' do
+    send_file File.join(settings.public_dir, 'about.html')
+  end
 end
 
 App.run!
