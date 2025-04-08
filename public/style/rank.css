@@ -40,3 +40,25 @@
 .card button {
     grid-area: btn;
 }
+
+@media (max-width: 600px) {
+    .card {
+        grid-template:
+      "title"
+      "photo"
+      "tags"
+      "btn";
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .card img {
+        margin: 0 auto;
+    }
+}
+
+.card button:hover {
+    background-color: #ACCFFF;
+    color: white;
+    cursor: pointer;
+}
