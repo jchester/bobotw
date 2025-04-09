@@ -5,20 +5,14 @@ require_relative "layout"
 class Rank < Phlex::HTML
   DB = Sequel.sqlite("bobotw.db", loggers: [Logger.new('log/db.log', level: Logger::DEBUG)])
 
-  def initialize(left_video:, right_video:, ranked:, possible:)
+  def initialize(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
     @left_video = left_video
     @right_video = right_video
     @ranked = ranked
     @possible = possible
 
-    @left_tags = DB[:tags]
-                   .join(:tags_on_videos, tag_id: :tag_id)
-                   .join(:videos, video_id: :video_id)
-                   .where(Sequel[:tags_on_videos][:video_id] => left_video[:video_id])
-    @right_tags = DB[:tags]
-                    .join(:tags_on_videos, tag_id: :tag_id)
-                    .join(:videos, video_id: :video_id)
-                    .where(Sequel[:tags_on_videos][:video_id] => right_video[:video_id])
+    @left_tags = left_tags
+    @right_tags = right_tags
   end
 
   def view_template

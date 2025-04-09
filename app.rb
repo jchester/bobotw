@@ -62,7 +62,18 @@ class App < Sinatra::Application
     video_count = DB[:videos].count
     possible = (video_count * (video_count - 1)) / 2
 
-    phlex Rank.new(left_video:, right_video:, ranked:, possible:)
+    tags_for = ->(video_id) {
+      DB[:tags]
+        .join(:tags_on_videos, tag_id: :tag_id)
+        .where(Sequel[:tags_on_videos][:video_id] => video_id)
+        .select(:text, :color)
+        .all
+    }
+
+    left_tags = tags_for.call(left_video[:video_id])
+    right_tags = tags_for.call(right_video[:video_id])
+
+    phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
   end
 
   post '/rank' do
