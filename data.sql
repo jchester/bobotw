@@ -172,7 +172,8 @@ values (1, 'Wheel of the Worst', '#77bb41'),
        (17, '👣 Dave Wascavage', '#eed3f4'),
        (18, '📼 Black Spine', '#212121'),
        (19, 'Monique Gabrielle', '#f8a492'),
-       (20, '👶 Jack Quaid', '#eeccaa')
+       (20, '👶 Jack Quaid', '#eeccaa'),
+       (21, '🖖 Marina Sirtis', '#de23c4')
 on conflict do nothing
 ;
 
@@ -364,6 +365,9 @@ values
     (124, 19),
     -- Jack Quaid
     (119, 20),
-    (146, 20)
+    (146, 20),
+    -- Marina Sirtis
+    (37, 21),
+    (135, 21)
 on conflict do nothing
 ;
