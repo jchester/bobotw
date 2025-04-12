@@ -101,5 +101,3 @@ class App < Sinatra::Application
     send_file File.join(settings.public_dir, 'about.html')
   end
 end
-
-App.run!
