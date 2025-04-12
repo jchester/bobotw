@@ -35,9 +35,9 @@ class Rank < Phlex::HTML
   end
 
   def button_form(image, winner, loser, tags)
-    form(method: :post, action: "/rank") {
+    form(method: :post, action: "/rank", onsubmit: safe("btn.disabled = true; return true;")) {
       div(class: "card") {
-        button { "Select as winner" }
+        button(name: "btn") { "Select as winner" }
         h4 { winner[:title] }
         img(src: image)
         input(hidden: true, name: "winner_id", value: winner[:video_id])
