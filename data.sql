@@ -153,25 +153,25 @@ on conflict do nothing
 ;
 
 insert into tags (tag_id, text, color)
-values (1, 'Wheel of the Worst', '#77bb41'),
+values (1, '🔄 Wheel of the Worst', '#77bb41'),
        (2, '🇨🇦 Colin and/or Jim from Canada', '#d80621'),
        (3, '🎃 Halloween Spooktacular', '#ff6600'),
-       (4, 'Sequel', '#341253'),
+       (4, '🥈 Sequel', '#341253'),
        (5, '🎅 Christmas', '#009933'),
        (6, '🥷 Len Kabasinski', '#121212'),
-       (7, 'Cameron Mitchell', '#34de53'),
-       (8, 'Battle of the Genres', '#dede1f'),
-       (9, '2-Way Tie', '#1567de'),
+       (7, '🍾 Cameron Mitchell', '#34de53'),
+       (8, '⚔️⚔ Battle of the Genres', '#dede1f'),
+       (9, '🎀 2-Way Tie', '#1567de'),
        (10, '🐢 Freddie Williams', '#986532'),
        (11, '🚗 Leo Fong', '#af33dd'),
        (12, '👽 Neil Breen', '#3781ad'),
        (13, '🏠 Mr McCulkin', '#128982'),
-       (14, 'Plinketto', '#583ade'),
+       (14, '🎳 Plinketto', '#583ade'),
        (15, '🔦 Spotlight', '#461aa9'),
        (16, '🕶️ Vitaliy Versace', '#bbcc33'),
        (17, '👣 Dave Wascavage', '#eed3f4'),
        (18, '📼 Black Spine', '#212121'),
-       (19, 'Monique Gabrielle', '#f8a492'),
+       (19, '⏳ Monique Gabrielle', '#f8a492'),
        (20, '👶 Jack Quaid', '#eeccaa'),
        (21, '🖖 Marina Sirtis', '#de23c4')
 on conflict do nothing
