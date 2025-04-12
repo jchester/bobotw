@@ -17,7 +17,12 @@ class App < Sinatra::Application
   set :session_secret, SESSION_SECRET
   set :sessions, :expire_after => 60 * 24 * 365 * 10 # expire after 10ish years
 
-  DB = Sequel.sqlite("bobotw.db", loggers: [Logger.new('log/db.log', level: Logger::DEBUG)])
+  DB = if settings.production?
+         Sequel.sqlite("bobotw.db")
+       else
+         Sequel.sqlite("bobotw.db", loggers: [Logger.new('log/db.log', level: Logger::DEBUG)])
+       end
+
   DB.run("PRAGMA foreign_keys = ON")
 
   get '/' do
