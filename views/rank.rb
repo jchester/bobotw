@@ -3,8 +3,6 @@
 require_relative "layout"
 
 class Rank < Phlex::HTML
-  DB = Sequel.sqlite("bobotw.db", loggers: [Logger.new('log/db.log', level: Logger::DEBUG)])
-
   def initialize(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
     @left_video = left_video
     @right_video = right_video
