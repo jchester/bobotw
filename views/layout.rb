@@ -11,7 +11,7 @@ class Layout < Phlex::HTML
       head {
         meta charset: "utf-8"
         meta name: "viewport", content: "width=device-width, initial-scale=1.0"
-        link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
+        link rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/picocss/2.1.0/pico.classless.min.css"
         title { @title }
         body {
           header {
