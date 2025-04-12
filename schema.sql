@@ -60,13 +60,6 @@ select videos.video_id                                     as video_id
      , coalesce(wins.wins, 0)                              as wins
      , coalesce(losses.losses, 0)                          as losses
      , coalesce(wins.wins, 0) + coalesce(losses.losses, 0) as appearances
-     , case
-           when wins.wins is not null and losses.losses is not null
-               then cast(wins.wins as float) / (wins.wins + losses.losses)
-           when wins.wins is not null and losses.losses is null then 1.0
-           when wins.wins is null and losses.losses is not null then 0.0
-           when wins.wins is null and losses.losses is null then 0.0
-    end                                                    as win_ratio
 from videos
          left outer join wins on videos.video_id = wins.video_id
          left outer join losses on videos.video_id = losses.video_id
