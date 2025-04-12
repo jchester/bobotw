@@ -62,7 +62,7 @@ class App < Sinatra::Application
     left_video = videos[video_id: video_ids[:left_id]]
     right_video = videos[video_id: video_ids[:right_id]]
 
-    ranked = DB[:pair_rankings].count(:ranker_id => session[:ranker])
+    ranked = DB[:pair_rankings].where(:ranker_id => session[:ranker]).count
     video_count = DB[:videos].count
     possible = (video_count * (video_count - 1)) / 2
 
