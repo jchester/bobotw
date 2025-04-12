@@ -9,8 +9,7 @@ require_relative "views/home_page"
 require_relative "views/rank"
 require_relative "views/leaderboard"
 
-SESSION_SECRET = File.read("secret")
-
+SESSION_SECRET = ENV["SESSION_SECRET"] || File.read("secret")
 class App < Sinatra::Application
   helpers Phlex::Sinatra
 
