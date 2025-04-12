@@ -6,11 +6,10 @@ class Rank < Phlex::HTML
   def initialize(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
     @left_video = left_video
     @right_video = right_video
-    @ranked = ranked
-    @possible = possible
-
     @left_tags = left_tags
     @right_tags = right_tags
+    @ranked = ranked
+    @possible = possible
   end
 
   def view_template
