@@ -44,16 +44,34 @@
 @media (max-width: 600px) {
     .card {
         grid-template:
+      "btn"
       "title"
       "photo"
-      "tags"
-      "btn";
+      "tags";
         grid-template-columns: 1fr;
         text-align: center;
     }
 
     .card img {
         margin: 0 auto;
+        height: 100px;
+        width: 100px;
+    }
+
+    .tag {
+        font-size: 0.75em;
+        padding: 0.25em 0.5em;
+    }
+
+    .card button {
+        font-size: 0.9em;
+        padding: 0.4em 0.8em;
+        line-height: 1.2;
+    }
+
+    .card {
+        gap: 12px;
+        padding: 12px;
     }
 }
 
