@@ -80,8 +80,7 @@ with scored as (select v.video_id
                                0
         end as confidence_lower_bound
                 from videos v
-                         join win_ratios wr on v.video_id = wr.video_id
-                order by confidence_lower_bound desc, appearances desc)
+                         join win_ratios wr on v.video_id = wr.video_id)
 select dense_rank() over (
     order by confidence_lower_bound desc, appearances desc
     ) as rank
@@ -91,4 +90,5 @@ select dense_rank() over (
      , appearances
      , confidence_lower_bound
 from scored
+order by rank
 ;
