@@ -34,7 +34,7 @@ class Leaderboard < Phlex::HTML
         tr {
           td { video[:rank] }
           td { video[:title] }
-          td { "%0.3f" % (video[:confidence_lower_bound] * 100.0) }
+          td { "%0.2f" % (video[:confidence_lower_bound] * 100.0) }
         }
       end
     end
