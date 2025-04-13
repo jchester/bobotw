@@ -15,6 +15,7 @@ class Leaderboard < Phlex::HTML
         table {
           thead {
             tr {
+              th { "Overall Rank" }
               th { "Title" }
               th { "Adjusted Win %" }
             }
@@ -31,6 +32,7 @@ class Leaderboard < Phlex::HTML
     tbody do
       @videos.each do |video|
         tr {
+          td { video[:rank] }
           td { video[:title] }
           td { "%0.3f" % (video[:confidence_lower_bound] * 100.0) }
         }

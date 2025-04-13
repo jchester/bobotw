@@ -66,20 +66,29 @@ from videos
 ;
 
 create view videos_with_confidence_bounds as
-select v.video_id
-     , v.title
-     , v.episode_title
-     , wr.appearances
-     , case
-           when wr.appearances > 0 then
-               -- https://www.evanmiller.org/how-not-to-sort-by-average-rating.html
-               ((wr.wins + 1.9208) / wr.appearances -
-                1.96 * sqrt((wr.wins * wr.losses) / wr.appearances + 0.9604) /
-                wr.appearances) / (1 + 3.8416 / wr.appearances)
-           else
-               0
-    end as confidence_lower_bound
-from videos v
-         join win_ratios wr on v.video_id = wr.video_id
-order by confidence_lower_bound desc, appearances desc
+with scored as (select v.video_id
+                     , v.title
+                     , v.episode_title
+                     , wr.appearances
+                     , case
+                           when wr.appearances > 0 then
+                               -- https://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+                               ((wr.wins + 1.9208) / wr.appearances -
+                                1.96 * sqrt((wr.wins * wr.losses) / wr.appearances + 0.9604) /
+                                wr.appearances) / (1 + 3.8416 / wr.appearances)
+                           else
+                               0
+        end as confidence_lower_bound
+                from videos v
+                         join win_ratios wr on v.video_id = wr.video_id
+                order by confidence_lower_bound desc, appearances desc)
+select dense_rank() over (
+    order by confidence_lower_bound desc, appearances desc
+    ) as rank
+     , video_id
+     , title
+     , episode_title
+     , appearances
+     , confidence_lower_bound
+from scored
 ;
