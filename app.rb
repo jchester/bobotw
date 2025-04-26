@@ -9,8 +9,17 @@ require_relative "views/home_page"
 require_relative "views/rank"
 require_relative "views/leaderboard"
 
-SESSION_SECRET = ENV["SESSION_SECRET"] || File.read("secret")
 class App < Sinatra::Application
+  SESSION_SECRET = ENV["SESSION_SECRET"] || File.read("secret")
+  FALLBACK_IMAGES = %w[
+  jay-bauman.jpg
+  mike-stoklasa.jpg
+  rich-evans.jpg
+].freeze
+  AVAILABLE_VIDEO_IMAGES = Dir.glob(File.join(settings.public_folder, "images", "*.png"))
+                              .map { |path| File.basename(path, ".png") }
+                              .to_set
+
   helpers Phlex::Sinatra
 
   enable :sessions
@@ -78,12 +87,10 @@ class App < Sinatra::Application
     right_tags = tags_for.call(right_video[:video_id])
 
     def find_image_path(video_id)
-      image_path = File.join(settings.public_folder, "images", "#{video_id}.png")
-      if File.exist?(image_path)
+      if AVAILABLE_VIDEO_IMAGES.include?(video_id.to_s)
         "/images/#{video_id}.png"
       else
-        images = %w[jay-bauman.jpg mike-stoklasa.jpg rich-evans.jpg]
-        "/images/#{images.sample}"
+        "/images/#{FALLBACK_IMAGES.sample}"
       end
     end
 
