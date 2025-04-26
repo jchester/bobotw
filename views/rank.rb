@@ -3,11 +3,13 @@
 require_relative "layout"
 
 class Rank < Phlex::HTML
-  def initialize(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
+  def initialize(left_video:, right_video:, left_tags:, right_tags:, left_image:, right_image:, ranked:, possible:)
     @left_video = left_video
     @right_video = right_video
     @left_tags = left_tags
     @right_tags = right_tags
+    @left_image = left_image
+    @right_image = right_image
     @ranked = ranked
     @possible = possible
   end
@@ -18,8 +20,8 @@ class Rank < Phlex::HTML
       main {
         p { "You have ranked #{@ranked} out of #{@possible} matchups." }
 
-        button_form("/images/jay-bauman.jpg", @left_video, @right_video, @left_tags)
-        button_form("/images/mike-stoklasa.jpg", @right_video, @left_video, @right_tags)
+        button_form(@left_image, @left_video, @right_video, @left_tags)
+        button_form(@right_image, @right_video, @left_video, @right_tags)
       }
     end
   end

@@ -77,7 +77,20 @@ class App < Sinatra::Application
     left_tags = tags_for.call(left_video[:video_id])
     right_tags = tags_for.call(right_video[:video_id])
 
-    phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, ranked:, possible:)
+    def find_image_path(video_id)
+      image_path = File.join(settings.public_folder, "images", "#{video_id}.png")
+      if File.exist?(image_path)
+        "/images/#{video_id}.png"
+      else
+        images = %w[jay-bauman.jpg mike-stoklasa.jpg rich-evans.jpg]
+        "/images/#{images.sample}"
+      end
+    end
+
+    left_image = find_image_path(left_video[:video_id])
+    right_image = find_image_path(right_video[:video_id])
+
+    phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, left_image:, right_image:, ranked:, possible:)
   end
 
   post '/rank' do
