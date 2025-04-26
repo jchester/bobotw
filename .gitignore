@@ -4,3 +4,4 @@ log/
 secret
 vendor/
 .DS_Store
+/public/images/*.png
