@@ -3,3 +3,4 @@ bobotw.db
 log/
 secret
 vendor/
+.DS_Store
