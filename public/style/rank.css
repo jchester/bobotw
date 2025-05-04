@@ -5,7 +5,7 @@
                             "photo tags tags";
     grid-template-columns: auto 1fr;
     gap: 20px;
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     padding: 20px;
 }
