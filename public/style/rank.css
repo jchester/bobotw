@@ -1,9 +1,9 @@
 .card {
     display: grid;
     grid-template:
-                            "title title btn"
+                            "btn title title"
                             "photo tags tags";
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
     max-width: 800px;
     margin: auto;
@@ -49,9 +49,9 @@
 @media (max-width: 600px) {
     .card {
         grid-template:
-      "title title btn"
+      "btn title title"
       "photo tags tags";
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         text-align: left;
     }
 
