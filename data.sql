@@ -148,7 +148,8 @@ values (1, 'Russian Terminator', 'Episode 1'),
        (144, 'Cranio-Sacral Therapy - The 10 Step Protocol', 'Wheel of the Worst #28'),
        (145, 'Vampire Cop', 'Donald Farmer''s Market'),
        (146, 'Devil Story', 'Halloween Spooktacular 2024'),
-       (147, 'Science Crazed', 'Christmas Wheel of the Worst')
+       (147, 'Science Crazed', 'Christmas Wheel of the Worst'),
+       (148, 'Carnival in Rio', 'Wheel of the Worst #29')
 on conflict do nothing
 ;
 
