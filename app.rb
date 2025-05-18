@@ -76,8 +76,8 @@ class App < Sinatra::Application
     possible = (video_count * (video_count - 1)) / 2
     left_tags = tags_for(left_video[:video_id])
     right_tags = tags_for(right_video[:video_id])
-    left_image = find_image_path(left_video[:video_id])
-    right_image = find_image_path(right_video[:video_id])
+    left_image = image_path_for(left_video[:video_id])
+    right_image = image_path_for(right_video[:video_id])
 
     phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, left_image:, right_image:, ranked:, possible:)
   end
@@ -104,7 +104,7 @@ class App < Sinatra::Application
   end
 
   ## Helpers
-  def find_image_path(video_id)
+  def image_path_for(video_id)
     if AVAILABLE_VIDEO_IMAGES.include?(video_id.to_s)
       "/images/#{video_id}.png"
     else
