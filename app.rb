@@ -48,29 +48,11 @@ class App < Sinatra::Application
       DB[:rankers].insert(ranker_id: new_ranker_id)
     end
 
-    # A little too fiddly to express using Sequel's DSL
-    candidate_videos_sql = <<~SQL
-      select l.video_id as left_id
-           , r.video_id as right_id
-      from videos_with_confidence_bounds l
-               join videos_with_confidence_bounds r on l.video_id <> r.video_id
-        where not exists(select 1
-                       from pair_rankings
-                       where ranker_id = ?
-                         and winner_id in (l.video_id, r.video_id)
-                         and loser_id in (l.video_id, r.video_id))
-      order by cast(l.appearances as decimal) + cast(r.appearances as decimal) 
-                   + ((random() + 9223372036854775808) / 18446744073709551616) -- hack to get random in range [0, 1]
-      limit 1
-    SQL
-
-    #   if no more show no-more view
-
-    video_ids = DB[candidate_videos_sql, session[:ranker]].first
+    video_ids = DB[:candidate_video_pairs].where(ranker_id: ranker).first
     videos = DB[:videos]
+
     left_video = videos[video_id: video_ids[:left_id]]
     right_video = videos[video_id: video_ids[:right_id]]
-
     ranked = DB[:pair_rankings].where(:ranker_id => session[:ranker]).count
     video_count = DB[:videos].count
     possible = (video_count * (video_count - 1)) / 2
