@@ -74,26 +74,8 @@ class App < Sinatra::Application
     ranked = DB[:pair_rankings].where(:ranker_id => session[:ranker]).count
     video_count = DB[:videos].count
     possible = (video_count * (video_count - 1)) / 2
-
-    tags_for = ->(video_id) {
-      DB[:tags]
-        .join(:tags_on_videos, tag_id: :tag_id)
-        .where(Sequel[:tags_on_videos][:video_id] => video_id)
-        .select(:text, :color)
-        .all
-    }
-
-    left_tags = tags_for.call(left_video[:video_id])
-    right_tags = tags_for.call(right_video[:video_id])
-
-    def find_image_path(video_id)
-      if AVAILABLE_VIDEO_IMAGES.include?(video_id.to_s)
-        "/images/#{video_id}.png"
-      else
-        "/images/#{FALLBACK_IMAGES.sample}"
-      end
-    end
-
+    left_tags = tags_for(left_video[:video_id])
+    right_tags = tags_for(right_video[:video_id])
     left_image = find_image_path(left_video[:video_id])
     right_image = find_image_path(right_video[:video_id])
 
@@ -119,5 +101,22 @@ class App < Sinatra::Application
 
   get '/about' do
     send_file File.join(settings.public_dir, 'about.html')
+  end
+
+  ## Helpers
+  def find_image_path(video_id)
+    if AVAILABLE_VIDEO_IMAGES.include?(video_id.to_s)
+      "/images/#{video_id}.png"
+    else
+      "/images/#{FALLBACK_IMAGES.sample}"
+    end
+  end
+
+  def tags_for(video_id)
+    DB[:tags]
+      .join(:tags_on_videos, tag_id: :tag_id)
+      .where(Sequel[:tags_on_videos][:video_id] => video_id)
+      .select(:text, :color)
+      .all
   end
 end
