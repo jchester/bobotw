@@ -43,9 +43,9 @@ class App < Sinatra::Application
   get '/rank' do
     ranker = session[:ranker]
     if ranker.nil?
-      new_ranker_id = Uuidx.v7
-      session[:ranker] = new_ranker_id
-      DB[:rankers].insert(ranker_id: new_ranker_id)
+      ranker = Uuidx.v7
+      session[:ranker] = ranker
+      DB[:rankers].insert(ranker_id: ranker)
     end
 
     video_ids = DB[:candidate_video_pairs].where(ranker_id: ranker).first
