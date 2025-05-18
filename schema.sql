@@ -92,25 +92,3 @@ select dense_rank() over (
 from scored
 order by rank
 ;
-
-create view candidate_video_pairs as
-select
-    l.video_id as left_id,
-    r.video_id as right_id,
-    rnk.ranker_id
-from videos_with_confidence_bounds l
-         join videos_with_confidence_bounds r
-              on l.video_id <> r.video_id
-         join rankers rnk on true
-where not exists (
-    select 1
-    from pair_rankings pr
-    where pr.ranker_id = rnk.ranker_id
-      and pr.winner_id in (l.video_id, r.video_id)
-      and pr.loser_id  in (l.video_id, r.video_id)
-)
-order by
-    cast(l.appearances as decimal) + cast(r.appearances as decimal) +
-    ((random() + 9223372036854775808) / 18446744073709551616)
-limit 1
-;
