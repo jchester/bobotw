@@ -3,9 +3,10 @@
 require_relative "layout"
 
 class HomePage < Phlex::HTML
-  def initialize(top_title:, episode_title:)
+  def initialize(top_title:, episode_title:, video_count:)
     @top_title = top_title
     @episode_title = episode_title
+    @video_count = video_count
   end
 
   def view_template
@@ -13,9 +14,9 @@ class HomePage < Phlex::HTML
       main {
         h1 { "Best of Best of the Worst" }
         div {
-          p { "The current Best of Best of the Worst is" }
+          p { "Out of #{@video_count} videos in the DB, the current Best of Best of the Worst is:" }
           h2 { @top_title }
-          p { "As seen in the episode entitled '#{@episode_title}'" }
+          p { "As seen in the episode entitled '#{@episode_title}'." }
         }
       }
     end

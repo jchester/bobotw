@@ -37,7 +37,8 @@ class App < Sinatra::Application
   get '/' do
     top_video = DB[:videos_with_confidence_bounds].reverse(:confidence_lower_bound)
                                                   .first
-    phlex HomePage.new(top_title: top_video[:title], episode_title: top_video[:episode_title])
+    video_count = DB[:videos].count
+    phlex HomePage.new(top_title: top_video[:title], episode_title: top_video[:episode_title], video_count:)
   end
 
   get '/rank' do
