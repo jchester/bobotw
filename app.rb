@@ -53,13 +53,16 @@ class App < Sinatra::Application
 
     left_video = videos[video_id: video_ids[:left_id]]
     right_video = videos[video_id: video_ids[:right_id]]
-    ranked = DB[:pair_rankings].where(:ranker_id => session[:ranker]).count
-    video_count = DB[:videos].count
-    possible = (video_count * (video_count - 1)) / 2
+
     left_tags = tags_for(left_video[:video_id])
     right_tags = tags_for(right_video[:video_id])
+
     left_image = image_path_for(left_video[:video_id])
     right_image = image_path_for(right_video[:video_id])
+
+    ranked = DB[:pair_rankings].where(ranker_id: ranker).count
+    video_count = DB[:videos].count
+    possible = (video_count * (video_count - 1)) / 2
 
     phlex Rank.new(left_video:, right_video:, left_tags:, right_tags:, left_image:, right_image:, ranked:, possible:)
   end
