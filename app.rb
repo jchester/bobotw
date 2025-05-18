@@ -93,7 +93,9 @@ class App < Sinatra::Application
   ## Helpers
 
   def candidates_for(ranker_id)
-    # A little too fiddly to express using Sequel's DSL
+    # Why not make this a database view, as we do for other things? Because this query is much, much faster.
+    # Because ranker_id is bound only once, the not exists subquery only gets evaluated once. But when creating
+    # a view, SQLite needs to evaluate it for every individual ranker *before* it can filter by ranker_id.
     candidate_videos_sql = <<~SQL
       select l.video_id as left_id
            , r.video_id as right_id
