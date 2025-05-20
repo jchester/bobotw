@@ -18,8 +18,10 @@ class Rank < Phlex::HTML
     render Layout.new(title: "Rank!") do
       link(rel: "stylesheet", href: "/style/rank.css")
       main {
-        p { "You have ranked #{@ranked} out of #{@possible} matchups." }
-
+        p {
+          plain "You have ranked #{@ranked} out of #{@possible} matchups. "
+          a(href: "/rank") { "↺ Skip this pair." }
+        }
         button_form(@left_image, @left_video, @right_video, @left_tags)
         button_form(@right_image, @right_video, @left_video, @right_tags)
       }
