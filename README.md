@@ -42,6 +42,14 @@ didn't need it. This is a dumb simple site. The interactive vibe is an illusion 
 
 * I like SQL. It is neat. It is powerful. I will use it to simplify the Ruby code. Until LLMs came along query planners
 were the closest thing we had to magic.
+* I like Ruby too. A lot, it's my happy place, I come back to it a lot. I actually tried writing the first version of
+this thing in Java, a fine upstanding language with many influential friends. I first took a crack at Helidon because I
+was curious what it was like (tl;dr, it's ragged). Then switched to Spring because I've used it in the past and it has
+all the sprockets and wheels and zip-zap doodads anyone could wish for. But I ran headfirst into the problem of
+deploying it. Have you ever tried deploying Java apps without getting a PhD? It's like asking Satan to underwrite your
+home loan when his nuts are itchy. Ruby is just some text. It used to be a PITA because it wasn't an Apache in-process
+thing like PHP, but now it's fast enough by itself that it doesn't matter. Boo Satan. Yay Ruby. Also: bring back Cloud
+Foundry.
 * Speaking of AI, is it any use? Well, somewhat. It writes half-useful CSS. It saves time on some things (but also makes
 bizarre choices on other things -- whatevs). I basically paired with it occasionally. It was OK. Saved a few episodes of
 _Midsommer Google Searches_. It drafted the first version of the "about" page, which I mostly rewrote. Who in their
