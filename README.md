@@ -24,7 +24,7 @@ I made some basic technology choices:
 * _I guess that rules out Rails, but thank god it also rules out ActiveRecord_. I suppose I'll use Sequel.
 * _I want to use a cheap VPS and my site will get bugger-all traffic_. OK, I'll use SQLite.
 
-SQLite was released in 2001. Sinatra and Sequel were released in 2007. I had fallen into the magic cave and stumbled
+SQLite was released in 2000. Sinatra and Sequel were released in 2007. I had fallen into the magic cave and stumbled
 out the other side into a world where HTML was the main show and not just a family embarrassment that had to be
 stoically, silently endured by React.
 
