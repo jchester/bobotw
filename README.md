@@ -55,6 +55,9 @@ bizarre choices on other things -- whatevs). I basically paired with it occasion
 _Midsommer Google Searches_. It drafted the first version of the "about" page, which I mostly rewrote. Who in their
 sane earthly mind still writes "Questions? Suggestions?" or "Crowdsourced" in this the year of our flying zombie two
 thousand and twenty five? Nobody except an absurdly self-confident fog of floats, that's who.
+* CSS `grid` lets me create a neat tabular layout without having to understand Zen meditation or whatever it is that CSS
+experts mean by "flow". Sure, it took twenty years for browsers to get us back to where we were with `<table>` layouts,
+but what's a few decades between friends?
 * I will store tag colors in the database and inline them when I render the tag in HTML. I could create classes and IDs
 and whatnot, but I could also just splurt it out inline from a quick query.
 * The image names are based on the IDs in the database. So I don't need another field to store a filename. Wouldn't
