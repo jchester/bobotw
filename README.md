@@ -30,11 +30,10 @@ stoically, silently endured by React.
 
 Let me tell you. It was wonderful.
 
-Dumb forms. Why? Because the backend is fast enough that it looks instant. Dumb server-side rendering. Why? Because the
+Dumb `<form>`s. Why? Because the backend is fast enough that it looks instant. Dumb server-side rendering. Why? Because the
 backend is fast enough that it looks instant. Dumb simple slow friendly Ruby code. Why? Because computers are somewhere
 between a bajillion and a hojillion times faster than they were when I first rented at VPS (in 2007, as it so happens).
-`<form>` tags. Hyperlinks. Tiny data. Total network traffic under 200k per page. Two threads for two cores. It was
-enough.
+Hyperlinks. Tiny data. Total network traffic under 200k per page. Two threads for two cores. It was enough.
 
 I even eschewed HTMX. I bought the book! It's great, it made me feel hopeful, I want to use it someday. But I just ...
 didn't need it. This is a dumb simple site. The interactive vibe is an illusion bred by being simple and light and dumb.
