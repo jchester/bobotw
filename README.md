@@ -46,7 +46,7 @@ were the closest thing we had to magic.
 bizarre choices on other things -- whatevs). I basically paired with it occasionally. It was OK. Saved a few episodes of
 _Midsommer Google Searches_. It drafted the first version of the "about" page, which I mostly rewrote. Who in their
 sane earthly mind still writes "Questions? Suggestions?" or "Crowdsourced" in this the year of our flying zombie two
-thousand and twenty five? Nobody except an absurdly self-confident cloud of floats, that's who.
+thousand and twenty five? Nobody except an absurdly self-confident fog of floats, that's who.
 * I will store tag colors in the database and inline them when I render the tag in HTML. I could create classes and IDs
 and whatnot, but I could also just splurt it out inline from a quick query.
 * The image names are based on the IDs in the database. So I don't need another field to store a filename. Wouldn't
